@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dynamic Object to JSON</title>
+   <style>
+       
+       body {
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           margin: 0;
+           padding: 0;
+           background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+           color: #333;
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+       }
+
+       h1, h2 {
+           color: #f8f9fa;
+           margin-bottom: 15px;
+           text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+       }
+
+       
+       form {
+           background: #ffffff;
+           padding: 25px;
+           border-radius: 10px;
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+           max-width: 400px;
+           width: 100%;
+           animation: fadeIn 1s ease-in-out;
+       }
+
+       label {
+           display: block;
+           margin-bottom: 8px;
+           font-weight: bold;
+           color: #555;
+       }
+
+       input[type="text"],
+       input[type="number"],
+       input[type="email"] {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 20px;
+           border: 2px solid #ddd;
+           border-radius: 5px;
+           font-size: 1rem;
+           transition: border-color 0.3s ease;
+       }
+
+       input:focus {
+           outline: none;
+           border-color: #6a11cb;
+           box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+       }
+
+       button {
+           background: #6a11cb;
+           color: #fff;
+           padding: 12px 15px;
+           border: none;
+           border-radius: 5px;
+           font-size: 1rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           width: 100%;
+       }
+
+       button:hover {
+           background: #2575fc;
+           transform: scale(1.05);
+       }
+
+       
+       #jsonOutput {
+           background-color: #f1f3f4;
+           padding: 15px;
+           border: 1px solid #ddd;
+           border-radius: 10px;
+           max-width: 400px;
+           width: 100%;
+           overflow: auto;
+           color: #444;
+           margin-top: 20px;
+           font-family: 'Courier New', Courier, monospace;
+           white-space: pre-wrap;
+           box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       }
+
+       
+       @keyframes fadeIn {
+           from {
+               opacity: 0;
+               transform: translateY(-20px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+   </style>
+</head>
+<body>
+   <h1>Populate User Details</h1>
+   <form id="userForm">
+       <label for="name">Name:</label>
+       <input type="text" id="name" name="name" placeholder="Enter your name" required>
+       
+       <label for="age">Age:</label>
+       <input type="number" id="age" name="age" placeholder="Enter your age" required>
+       
+       <label for="email">Email:</label>
+       <input type="email" id="email" name="email" placeholder="Enter your email" required>
+       
+       <label for="hobbies">Hobby:</label>
+       <input type="text" id="hobbies" name="hobbies" placeholder="Enter your hobbies" required>
+       
+       <button type="submit">Submit</button>
+   </form>
+
+   <h2>JSON Output</h2>
+   <pre id="jsonOutput"></pre>
+
+   <script>
+       document.getElementById('userForm').addEventListener('submit', function(event) {
+           event.preventDefault();
+
+        
+           const formData = {
+               name: document.getElementById('name').value,
+               age: document.getElementById('age').value,
+               email: document.getElementById('email').value,
+               hobbies: document.getElementById('hobbies').value
+           };
+
+           
+           document.getElementById('jsonOutput').textContent = JSON.stringify(formData, null, 2);
+       });
+   </script>
+</body>
+</html>
